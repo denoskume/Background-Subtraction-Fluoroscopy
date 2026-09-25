@@ -56,7 +56,8 @@ outputs/figures/
 From the project directory:
 
 ```bash
-git clone https://github.com/denoskume/Background-Subtraction-Fluoroscopy.git\ncd Background-Subtraction-Fluoroscopy
+git clone https://github.com/denoskume/Background-Subtraction-Fluoroscopy.git
+cd Background-Subtraction-Fluoroscopy
 
 python3 -m venv .venv
 source .venv/bin/activate

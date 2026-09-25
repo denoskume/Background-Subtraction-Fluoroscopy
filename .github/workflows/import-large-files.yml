@@ -1,0 +1,29 @@
+name: Import large source files
+
+on:
+  push:
+    paths:
+      - ".github/workflows/import-large-files.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download large files from academic source
+        run: |
+          mkdir -p notebooks outputs/figures
+          curl -L --fail "https://raw.githubusercontent.com/denoskume/Master_SIP_EC-Nantes/main/Projects/Background_Subtraction/notebooks/Background_Subtraction.ipynb" -o notebooks/Background_Subtraction.ipynb
+          curl -L --fail "https://raw.githubusercontent.com/denoskume/Master_SIP_EC-Nantes/main/Projects/Background_Subtraction/outputs/figures/02_intermediate_pipeline.png" -o outputs/figures/02_intermediate_pipeline.png
+          curl -L --fail "https://raw.githubusercontent.com/denoskume/Master_SIP_EC-Nantes/main/Projects/Background_Subtraction/outputs/figures/06_final_guidance_gallery.png" -o outputs/figures/06_final_guidance_gallery.png
+      - name: Commit imported files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add notebooks/Background_Subtraction.ipynb outputs/figures/02_intermediate_pipeline.png outputs/figures/06_final_guidance_gallery.png
+          git commit -m "Restore large Background Subtraction files" || exit 0
+          git push

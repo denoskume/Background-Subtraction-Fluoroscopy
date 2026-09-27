@@ -110,7 +110,5 @@ Background_Subtraction/
 
 ## Participants
 
-**Denos Kume**  
-**Oluwole Shokunbi**  
-
-MSc. CORO DASSIP — École Centrale de Nantes
+Denos Kume  
+Oluwole Shokunbi

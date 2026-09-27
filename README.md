@@ -4,10 +4,10 @@ Neurointerventional image-processing project for detecting moving guidewires and
 
 The project follows the same four-notebook structure used across the repository:
 
-- [Problem Statement](notebooks/background_subtraction_problem_statement.ipynb) — context, inputs, objectives, constraints, and numbered workflow stages.
-- [Requirements Gathering & Approach](notebooks/background_subtraction_requirements_gathering_and_approach.ipynb) — implementation requirements, acceptance criteria, and task-to-code traceability.
-- [Theory](notebooks/background_subtraction_theory.ipynb) — mathematical foundations, assumptions, metrics, and limitations.
-- [Implementation](notebooks/Background_Subtraction.ipynb) — executable code and outputs only.
+- [Problem Statement](notebooks/problem_statement.ipynb) — context, inputs, objectives, constraints, and numbered workflow stages.
+- [Requirements Gathering & Approach](notebooks/requirements.ipynb) — implementation requirements, acceptance criteria, and task-to-code traceability.
+- [Theory](notebooks/theory.ipynb) — mathematical foundations, assumptions, metrics, and limitations.
+- [Implementation](notebooks/main.ipynb) — executable code and outputs only.
 
 The number of numbered stages is project-dependent. For the current implementation, the supporting notebooks are synchronized with the **15 executable cells** in the implementation notebook.
 
@@ -66,7 +66,7 @@ python -m pip install -r requirements.txt
 code .
 ```
 
-Open [Background_Subtraction.ipynb](notebooks/Background_Subtraction.ipynb), select the project environment as the Jupyter kernel, and execute the implementation notebook from top to bottom when fresh outputs are required.
+Open [main.ipynb](notebooks/main.ipynb), select the project environment as the Jupyter kernel, and execute the implementation notebook from top to bottom when fresh outputs are required.
 
 ## Project Structure
 
@@ -75,10 +75,10 @@ Background_Subtraction/
 ├── data/
 │   └── catheter/
 ├── notebooks/
-│   ├── background_subtraction_problem_statement.ipynb
-│   ├── background_subtraction_requirements_gathering_and_approach.ipynb
-│   ├── background_subtraction_theory.ipynb
-│   └── Background_Subtraction.ipynb
+│   ├── problem_statement.ipynb
+│   ├── requirements.ipynb
+│   ├── theory.ipynb
+│   └── main.ipynb
 ├── outputs/
 │   ├── figures/
 │   ├── background_subtraction_metrics.csv

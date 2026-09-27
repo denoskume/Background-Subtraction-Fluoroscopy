@@ -102,14 +102,6 @@ Background_Subtraction/
 - guidance overlays and qualitative validation;
 - CSV export and explicit deliverable checks.
 
-## Out of Scope
-
-- non-rigid registration;
-- optical flow;
-- learned segmentation networks;
-- adaptive online background models;
-- clinical validation or deployment.
-
 ## Participant
 
 **Denos Kume**  

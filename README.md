@@ -102,7 +102,9 @@ Background_Subtraction/
 - guidance overlays and qualitative validation;
 - CSV export and explicit deliverable checks.
 
-## Participant
+## Participants
 
 **Denos Kume**  
+**Oluwole Shokunbi**  
+
 MSc. CORO DASSIP — École Centrale de Nantes

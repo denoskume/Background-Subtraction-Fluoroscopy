@@ -8,10 +8,10 @@
 
 Neurointerventional image-processing project for detecting moving guidewires and microcatheters in fluoroscopic sequences using a fixed background reference, histogram transformation, spatial and spectral filtering, morphology, segmentation, and quantitative validation.
 
-The project follows the same four-notebook structure used across the repository:
+The project is organized into four complementary notebooks:
 
 - [Problem Statement](notebooks/problem_statement.ipynb) — context, inputs, objectives, constraints, and numbered workflow stages.
-- [Requirements Gathering & Approach](notebooks/requirements.ipynb) — implementation requirements, acceptance criteria, and task-to-code traceability.
+- [Requirements](notebooks/requirements.ipynb) — implementation requirements, acceptance criteria, and task-to-code traceability.
 - [Theory](notebooks/theory.ipynb) — mathematical foundations, assumptions, metrics, and limitations.
 - [Implementation](notebooks/main.ipynb) — executable code and outputs only.
 

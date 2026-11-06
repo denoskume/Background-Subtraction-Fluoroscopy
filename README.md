@@ -15,6 +15,9 @@ The project is organized into four complementary notebooks:
 - [Theory](notebooks/theory.ipynb) — mathematical foundations, assumptions, metrics, and limitations.
 - [Implementation](notebooks/main.ipynb) — executable code and outputs only.
 
+> **Reconstruction note (6 November 2026):** The initial `notebooks/main.ipynb` committed on 27 September 2026 was an empty (0-byte) file. The 15-cell implementation has since been reconstructed from the three supporting notebooks, the provided images/annotations, and archived figures/metrics. It has been executed successfully in GitHub Actions. The original numerical hyperparameters could not be recovered; results from re-running the reconstructed notebook may differ from the historical CSVs. The notebook writes new CSVs with the `_reconstructed` suffix so the historical numerical evidence is not overwritten. Figure files are regenerated locally on execution; the historical committed figures remain unchanged until a user explicitly commits replacements.
+
+
 The number of numbered stages is project-dependent. For the current implementation, the supporting notebooks are synchronized with the **15 executable cells** in the implementation notebook.
 
 ## Current Workflow

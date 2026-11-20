@@ -2,7 +2,7 @@
 
 **Denos Kume and Oluwole Shokunbi · MSc Control and Robotics · Centrale Nantes**
 
-[Open the interactive HTML review](https://raw.githack.com/denoskume/Background-Subtraction-Fluoroscopy/main/review/index.html) · [Download the standalone HTML viewer](https://github.com/denoskume/Background-Subtraction-Fluoroscopy/raw/refs/heads/main/review/fluoroscopy-review.html)
+[Explore the portfolio case study](https://raw.githack.com/denoskume/msc-coro-dassip-portfolio/main/index.html#/projects/fluoroscopy-instrument-segmentation) · [Download the standalone HTML viewer](https://github.com/denoskume/Background-Subtraction-Fluoroscopy/raw/refs/heads/main/review/fluoroscopy-review.html)
 
 The downloadable viewer includes all ten comparison images and works offline. Open the saved HTML file in a browser to review frames and export observations.
 

@@ -1,114 +1,72 @@
-<p>
-  <img align="left" src="https://www.ec-nantes.fr/medias/photo/logocn-rvb_1648479844750-png?ID_FICHE=178994&amp;INLINE=FALSE" alt="Centrale Nantes" height="64">
-</p>
-<p align="right"><strong>MSc. CORO DASSIP</strong></p>
-<br clear="both">
+# Segmenting guidewires and microcatheters in fluoroscopy
 
-<h1 align="center">Background Subtraction</h1>
+**Denos Kume · MSc Control and Robotics · Centrale Nantes**
 
-Neurointerventional image-processing project for detecting moving guidewires and microcatheters in fluoroscopic sequences using a fixed background reference, histogram transformation, spatial and spectral filtering, morphology, segmentation, and quantitative validation.
+[Open the interactive HTML review](https://raw.githack.com/denoskume/Background-Subtraction-Fluoroscopy/main/review/index.html) · [Download the standalone HTML viewer](https://github.com/denoskume/Background-Subtraction-Fluoroscopy/raw/refs/heads/main/review/fluoroscopy-review.html)
 
-The project is organized into four complementary notebooks:
+The downloadable viewer includes all ten comparison images and works offline. Open the saved HTML file in a browser to review frames and export observations.
 
-- [Problem Statement](notebooks/problem_statement.ipynb) — context, inputs, objectives, constraints, and numbered workflow stages.
-- [Requirements](notebooks/requirements.ipynb) — implementation requirements, acceptance criteria, and task-to-code traceability.
-- [Theory](notebooks/theory.ipynb) — mathematical foundations, assumptions, metrics, and limitations.
-- [Implementation](notebooks/main.ipynb) — executable code and outputs only.
+## Retrospective imaging review
 
-The number of numbered stages is project-dependent. For the current implementation, the supporting notebooks are synchronized with the **15 executable cells** in the implementation notebook.
+This project models a hospital imaging research team’s offline review of a teaching acquisition. A technical reviewer checks the input pairs and run provenance. An imaging reader can then inspect all ten frames in chronological order and document visibility, missed tool segments and false detections. Clinical review is pending. The dataset contains exported images and tracings; patient-level outcomes and acquisition geometry are unavailable.
 
-## Current Workflow
+After extracting the ZIP, open **[the frame review sheet](review/index.html)** in a browser. No installation is required for the review. Enter your findings beside each frame. Drafts are stored in the current browser when available. Select **Export worksheet (CSV)** to download all ten rows. A [blank worksheet](review/reader_template.csv) is also included. The [run manifest](review/run_manifest.json) identifies the inputs, parameters, software versions and output masks.
 
-1. configure the processing environment;
-2. define reusable processing and evaluation functions;
-3. validate frames and annotations;
-4. build the static background reference;
-5. inspect the intermediate processing pipeline;
-6. generate fixed-threshold, Otsu, and EM/GMM masks;
-7. compare segmentation strategies qualitatively;
-8. evaluate every strategy across the sequence;
-9. aggregate metrics and retain the selected strategy;
-10. plot temporal validation curves;
-11. summarize strategy-level performance;
-12. assemble the final retained pipeline;
-13. generate the final guidance gallery;
-14. perform final qualitative validation;
-15. export results and verify deliverables.
+## Grayscale preparation
 
-## Outputs
+All ten images use the same display window, local contrast enhancement and gamma correction before rendering overlays. The review page includes the original and enhanced views side by side.
 
-Generated numerical results:
+![Original and enhanced grayscale, frame 291](assets/grayscale-comparison.png)
 
-```text
-outputs/background_subtraction_metrics.csv
-outputs/background_subtraction_summary.csv
-```
+## Mission
 
-Generated figures:
+Detect thin, moving instruments against noisy anatomical structures in a fluoroscopic sequence. I compared three segmentation methods on a common background-subtraction pipeline, checked each prediction against manual guidewire and microcatheter tracings, and used the errors to explain where the pipeline breaks down.
 
-```text
-outputs/figures/
-├── 01_background_reference.png
-├── 02_intermediate_pipeline.png
-├── 03_strategy_comparison_representative.png
-├── 04_temporal_metric_curves.png
-├── 05_strategy_summary.png
-├── 06_final_guidance_gallery.png
-└── 07_final_validation.png
-```
+[Read the executed Python notebook](Fluoroscopy_Instrument_Segmentation.ipynb)
 
-## Run
+![Predicted instrument masks for all ten frames](assets/segmentation-comparison.png)
 
-From the project directory:
+## Continuous instrument tracing
+
+The classical background-subtraction pipeline sometimes loses the stationary shaft and picks up anatomical edges. The supervised extension uses an oriented dark-line response, local intensity derivatives and temporal change to estimate pixel scores, then decodes one connected centerline from the lower image border. This is a projection-specific assumption.
+
+This is a retrospective, within-acquisition experiment. The new supervised method fits on other manually traced frames from the same acquisition. Each test pair and its immediate neighbors are excluded from fitting. The temporal background uses the raw images of the whole sequence. Model and path settings were explored on this sequence; the scores are development results, not independent patient-level validation.
+
+On the nine motion frames, mean Dice rose from **0.501 to 0.876**. False-positive pixels fell from 22,472 to 3,553 and missed pixels from 5,240 to 2,511. All ten predictions formed a single component. Frame-level Dice ranged from 0.818 to 0.932. Inspect the [per-frame comparison](frame_comparison.csv) and the review overlays for residual errors.
+
+![Previous prediction, continuous trace and manual tracing for frame 291](assets/mask-cleanup.png)
+
+## Segmentation results before component cleanup
+
+Each entry is a mean over the same nine subsequent frames. Instrument pixels are a small part of the image, so foreground Dice and IoU accompany whole-mask PSNR.
+
+| Segmentation method | Mean Dice | Mean IoU | Mean PSNR |
+|---|---:|---:|---:|
+| Fixed threshold (0.10) | **0.416** | 0.280 | **16.57 dB** |
+| Otsu threshold | 0.412 | **0.295** | 13.95 dB |
+| Two-component Gaussian mixture | 0.385 | 0.249 | 15.30 dB |
+
+I retained the fixed threshold for its foreground Dice and PSNR. The Dice difference from Otsu is small, and the two methods rank differently on IoU. The methods were selected and evaluated on one acquisition; these scores describe that sequence.
+
+## What changed the result?
+
+- **Background subtraction alone** produced a mean PSNR of 20.35 dB and a Dice of just 0.001. Predicting mostly background can give a favorable pixel-error score while missing almost the entire tool.
+- **Contrast stretching and smoothing** brought Dice to 0.199 after stretching and 0.387 after spatial Gaussian filtering. Adding a frequency-domain low-pass filter raised it to 0.403.
+- **Morphological processing** raised Dice to 0.416 and reduced PSNR from 17.22 to 16.57 dB. Expanding and cleaning the response traded some whole-image agreement for improved instrument overlap.
+
+## Experience gained
+
+Designed a stepwise comparison of image-processing choices, converted two manual tracings into a shared reference mask, and diagnosed failures using per-frame metrics and overlays. The notebook includes descriptive Python functions for preprocessing, inference and evaluation so each step can be inspected or rerun.
+
+## Reproduce the analysis
+
+Extract the project and keep `catheter.zip` beside the notebook. From the project directory, use a Python 3.12 environment and run:
 
 ```bash
-git clone https://github.com/denoskume/Background-Subtraction-Fluoroscopy.git
-cd Background-Subtraction-Fluoroscopy
-
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-code .
+python -m jupyter lab Fluoroscopy_Instrument_Segmentation.ipynb
 ```
 
-Open [main.ipynb](notebooks/main.ipynb), select the project environment as the Jupyter kernel, and execute the implementation notebook from top to bottom when fresh outputs are required.
+Choose **Restart Kernel and Run All Cells**. The dataset contains ten 512 × 512 frames and twenty annotations. Frame 201 is the fixed reference. The notebook regenerates all ten PNGs in `output_masks/`, verifies their pixel values, and reports sequence statistics including the reference. Each exported mask uses 0 for instruments and 1 for background.
 
-## Project Structure
-
-```text
-Background_Subtraction/
-├── data/
-│   └── catheter/
-├── notebooks/
-│   ├── problem_statement.ipynb
-│   ├── requirements.ipynb
-│   ├── theory.ipynb
-│   └── main.ipynb
-├── outputs/
-│   ├── figures/
-│   ├── background_subtraction_metrics.csv
-│   └── background_subtraction_summary.csv
-├── requirements.txt
-└── README.md
-```
-
-## Implemented Scope
-
-- fixed static background reference from frame 201;
-- Gaussian spatial smoothing;
-- percentile-based intensity normalization;
-- signed background subtraction;
-- Gaussian high-pass filtering in the Fourier domain;
-- morphological refinement;
-- fixed-threshold, Otsu, and two-component EM/GMM segmentation;
-- sequence-level SAD, MSE, PSNR, Dice, and IoU evaluation;
-- quantitative strategy comparison and retained-strategy selection;
-- temporal metric analysis;
-- guidance overlays and qualitative validation;
-- CSV export and explicit deliverable checks.
-
-## Participants
-
-Denos Kume  
-Oluwole Shokunbi
+**Academic context.** Adapted from the Background Subtraction practical by Diana Mateus at Centrale Nantes, using the supplied fluoroscopy sequence and manual annotations.

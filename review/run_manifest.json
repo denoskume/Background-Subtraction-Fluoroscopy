@@ -1,0 +1,145 @@
+{
+  "prediction_method": "ExtraTrees + continuous path",
+  "validation_folds": [
+    {
+      "test_frames": [
+        201,
+        211
+      ],
+      "training_frames": [
+        231,
+        241,
+        251,
+        261,
+        271,
+        281,
+        291
+      ]
+    },
+    {
+      "test_frames": [
+        221,
+        231
+      ],
+      "training_frames": [
+        201,
+        251,
+        261,
+        271,
+        281,
+        291
+      ]
+    },
+    {
+      "test_frames": [
+        241,
+        251
+      ],
+      "training_frames": [
+        201,
+        211,
+        221,
+        271,
+        281,
+        291
+      ]
+    },
+    {
+      "test_frames": [
+        261,
+        271
+      ],
+      "training_frames": [
+        201,
+        211,
+        221,
+        231,
+        241,
+        291
+      ]
+    },
+    {
+      "test_frames": [
+        281,
+        291
+      ],
+      "training_frames": [
+        201,
+        211,
+        221,
+        231,
+        241,
+        251,
+        261
+      ]
+    }
+  ],
+  "temporal_background_percentile": 80,
+  "tree_count": 32,
+  "model_seed": 626,
+  "beam_width": 12,
+  "path_score_offset": 0.46,
+  "entry_assumption": "lower image edge",
+  "classical_baseline_min_span": 22,
+  "minimum_component_span_px": 22,
+  "component_connectivity": 8,
+  "display_window": [
+    0.2823529411764706,
+    0.9921568627450981
+  ],
+  "display_gamma": 0.6,
+  "display_local_contrast_gain": 0.7,
+  "display_local_sigma_px": 10,
+  "task": "Offline retrospective technical evaluation",
+  "input_sha256": "c291eea30db60c96b8d6cea49ea0d1ff2630ca13be302cc134f8238ec865742e",
+  "frame_numbers": [
+    201,
+    211,
+    221,
+    231,
+    241,
+    251,
+    261,
+    271,
+    281,
+    291
+  ],
+  "reference_frame": 201,
+  "shape": [
+    10,
+    512,
+    512
+  ],
+  "threshold": 0.1,
+  "gaussian_sigma_px": 1.0,
+  "butterworth_cutoff_cycles_per_pixel": 0.25,
+  "morphology_radius_px": 2,
+  "intensity_percentiles": [
+    0,
+    90
+  ],
+  "difference_percentiles": [
+    10,
+    100
+  ],
+  "tool_label": 0,
+  "background_label": 1,
+  "mask_sha256": {
+    "mask_201.png": "d4eab67dd43a9eaa6b7c897003277a3909a4024c4700c7383cd46d3c7e259853",
+    "mask_211.png": "da318f2b398c91999dc969a44d77cbfe77c3a3323db5c8e4d6c281e65c29fe3e",
+    "mask_221.png": "80a86da71444bc99fca083c61a9245f23832b4597d7d54946df078021e7ea125",
+    "mask_231.png": "fed856dbf219958537242308d74ed15c50d6f63ebd0f3fe2465a8f4aabac62ce",
+    "mask_241.png": "629a6170a8f4cd744e95c90f48b124bc83f8fcc8f866d4384487eac0b33e0290",
+    "mask_251.png": "d64ddeda0002a014e4a2c79faeacb13d460ba9568239cb22b1cdafdcd8e91c06",
+    "mask_261.png": "deaac9e1c069be9e34a5b4c3fa08c858f5c0884b6be27d13b839a513aaaae66d",
+    "mask_271.png": "19954d5ee5af10edf9d589c2fc6f2208a21ffc851bbe79f104d28d37b4e8b9ad",
+    "mask_281.png": "d3c19648179dd950ee8a211e6e6c5038373c25fdd76472d72236ec310e7564e2",
+    "mask_291.png": "b358f9013c74e86cc93c023c70aafde37986c47bdca71f7c8a8811f5bb727fed"
+  },
+  "software": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8",
+    "scikit-learn": "1.8.0"
+  }
+}

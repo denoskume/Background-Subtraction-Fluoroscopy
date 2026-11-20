@@ -1,0 +1,11 @@
+frame,role,dice,missed_pixels,false_positive_pixels,review_status,visibility,reviewer_findings,reviewer,review_date
+201,Background reference,0.9319,63,86,Pending human review,,,,
+211,Subsequent frame,0.9317,55,94,Pending human review,,,,
+221,Subsequent frame,0.818,118,444,Pending human review,,,,
+231,Subsequent frame,0.8889,202,221,Pending human review,,,,
+241,Subsequent frame,0.8831,222,271,Pending human review,,,,
+251,Subsequent frame,0.8472,391,435,Pending human review,,,,
+261,Subsequent frame,0.8835,380,384,Pending human review,,,,
+271,Subsequent frame,0.8784,409,480,Pending human review,,,,
+281,Subsequent frame,0.9079,320,413,Pending human review,,,,
+291,Subsequent frame,0.8487,414,811,Pending human review,,,,

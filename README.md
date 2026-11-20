@@ -1,6 +1,6 @@
 # Segmenting guidewires and microcatheters in fluoroscopy
 
-**Denos Kume · MSc Control and Robotics · Centrale Nantes**
+**Denos Kume and Oluwole Shokunbi · MSc Control and Robotics · Centrale Nantes**
 
 [Open the interactive HTML review](https://raw.githack.com/denoskume/Background-Subtraction-Fluoroscopy/main/review/index.html) · [Download the standalone HTML viewer](https://github.com/denoskume/Background-Subtraction-Fluoroscopy/raw/refs/heads/main/review/fluoroscopy-review.html)
 
@@ -20,7 +20,7 @@ All ten images use the same display window, local contrast enhancement and gamma
 
 ## Mission
 
-Detect thin, moving instruments against noisy anatomical structures in a fluoroscopic sequence. I compared three segmentation methods on a common background-subtraction pipeline, checked each prediction against manual guidewire and microcatheter tracings, and used the errors to explain where the pipeline breaks down.
+Detect thin, moving instruments against noisy anatomical structures in a fluoroscopic sequence. We compared three segmentation methods on a common background-subtraction pipeline, checked each prediction against manual guidewire and microcatheter tracings, and used the errors to explain where the pipeline breaks down.
 
 [Read the executed Python notebook](Fluoroscopy_Instrument_Segmentation.ipynb)
 
@@ -46,7 +46,7 @@ Each entry is a mean over the same nine subsequent frames. Instrument pixels are
 | Otsu threshold | 0.412 | **0.295** | 13.95 dB |
 | Two-component Gaussian mixture | 0.385 | 0.249 | 15.30 dB |
 
-I retained the fixed threshold for its foreground Dice and PSNR. The Dice difference from Otsu is small, and the two methods rank differently on IoU. The methods were selected and evaluated on one acquisition; these scores describe that sequence.
+We retained the fixed threshold for its foreground Dice and PSNR. The Dice difference from Otsu is small, and the two methods rank differently on IoU. The methods were selected and evaluated on one acquisition; these scores describe that sequence.
 
 ## What changed the result?
 

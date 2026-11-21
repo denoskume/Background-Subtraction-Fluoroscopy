@@ -1,0 +1,48 @@
+name: Convert project demo for browsers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/demo.mp4'
+      - '.github/workflows/convert-demo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Convert demo to HTML5-compatible MP4
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -i assets/demo.mp4 \
+            -map 0:v:0 -map '0:a?' \
+            -c:v libx264 -preset medium -crf 23 \
+            -pix_fmt yuv420p -movflags +faststart \
+            -c:a aac -b:a 128k \
+            assets/demo-web.mp4
+          ffprobe -v error -show_entries stream=codec_name,codec_type,pix_fmt -show_entries format=duration,size -of json assets/demo-web.mp4
+
+      - name: Commit browser-ready version
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/demo-web.mp4
+          if ! git diff --cached --quiet; then
+            git commit -m "build(video): encode browser-ready background subtraction demo"
+            git push origin HEAD:main
+          fi

@@ -70,3 +70,9 @@ python -m jupyter lab Fluoroscopy_Instrument_Segmentation.ipynb
 Choose **Restart Kernel and Run All Cells**. The dataset contains ten 512 × 512 frames and twenty annotations. Frame 201 is the fixed reference. The notebook regenerates all ten PNGs in `output_masks/`, verifies their pixel values, and reports sequence statistics including the reference. Each exported mask uses 0 for instruments and 1 for background.
 
 **Academic context.** Adapted from the Background Subtraction practical by Diana Mateus at Centrale Nantes, using the supplied fluoroscopy sequence and manual annotations.
+
+## Rights and reuse
+
+This Master 1 project was developed by **Denos Kume and Oluwole Shokunbi** using a fluoroscopy sequence and manual annotations supplied for the course. No open-source license is granted for this repository's collaborative work or course materials merely because they are publicly viewable. Check with the respective contributors and owners before redistributing or adapting source material or dataset files.
+
+The [standalone portfolio website](https://github.com/denoskume/portfolio) has a separate [MIT License for its original website code](https://github.com/denoskume/portfolio/blob/main/LICENSE). It does **not** apply to the dataset, annotations, or jointly authored materials in this repository. See the [portfolio licensing scope](https://github.com/denoskume/portfolio/blob/main/LICENSING.md).

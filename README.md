@@ -2,19 +2,19 @@
 
 **Denos Kume and Oluwole Shokunbi · MSc Control and Robotics · Centrale Nantes**
 
-[Explore the portfolio case study](https://raw.githack.com/denoskume/msc-coro-dassip-portfolio/main/index.html#/projects/fluoroscopy-instrument-segmentation) · [Download the standalone HTML viewer](https://github.com/denoskume/Background-Subtraction-Fluoroscopy/raw/refs/heads/main/review/fluoroscopy-review.html)
+[Open the interactive portfolio case study](https://denoskume.github.io/portfolio/#/projects/fluoroscopy-instrument-segmentation) · [Read the executed notebook](Fluoroscopy_Instrument_Segmentation.ipynb)
 
-The downloadable viewer includes all ten comparison images and works offline. Open the saved HTML file in a browser to review frames and export observations.
+The interactive review is integrated into the standalone portfolio. It displays the frame comparisons and supports review notes and CSV export.
 
 ## Retrospective imaging review
 
 This project models a hospital imaging research team’s offline review of a teaching acquisition. A technical reviewer checks the input pairs and run provenance. An imaging reader can then inspect all ten frames in chronological order and document visibility, missed tool segments and false detections. Clinical review is pending. The dataset contains exported images and tracings; patient-level outcomes and acquisition geometry are unavailable.
 
-After extracting the ZIP, open **[the frame review sheet](review/index.html)** in a browser. No installation is required for the review. Enter your findings beside each frame. Drafts are stored in the current browser when available. Select **Export worksheet (CSV)** to download all ten rows. A [blank worksheet](review/reader_template.csv) is also included. The [run manifest](review/run_manifest.json) identifies the inputs, parameters, software versions and output masks.
+Open the **[integrated frame reviewer](https://denoskume.github.io/portfolio/#/projects/fluoroscopy-instrument-segmentation)** in a browser. Enter your findings beside each frame. Drafts are stored in the current browser when available. Select **Export worksheet (CSV)** to download all ten rows. A [blank worksheet](review/reader_template.csv) is also included. The [run manifest](review/run_manifest.json) identifies the inputs, parameters, software versions and output masks.
 
 ## Grayscale preparation
 
-All ten images use the same display window, local contrast enhancement and gamma correction before rendering overlays. The review page includes the original and enhanced views side by side.
+All ten images use the same display window, local contrast enhancement and gamma correction before rendering overlays. The case study includes the original and enhanced views side by side.
 
 ![Original and enhanced grayscale, frame 291](assets/grayscale-comparison.png)
 
